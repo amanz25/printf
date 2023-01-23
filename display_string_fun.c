@@ -1,4 +1,4 @@
-#include "main.c"
+#include "main.h"
 #include <stdarg.h>
 #include <stdlib.h>
 #include <unistd.h>
