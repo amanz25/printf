@@ -1,5 +1,5 @@
 #include<stdarg.h>
-#include <main.h>
+#include "main.h"
 
 /**
  * customPrint - function print based on arg passed
