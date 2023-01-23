@@ -1,4 +1,5 @@
 #include <stdarg.h>
+#include <stddef.h>
 #include "main.h"
 
 /**
@@ -26,13 +27,19 @@ int (*char_type(const char c))(va_list)
 	}
 	return (NULL);
 }
-
 /**
  * _printf - varidic fucntion to print characters with different format
- *
  * @format: the first paramater is format string
+ *
  * Return: printed characters
  */
+
+/**
+ * _printf - Reproduce behavior of printf function
+ * @format: format string
+ * Return: value of printed chars
+ */
+
 int _printf(const char *format, ...)
 {
 	va_list arg_parameters;
@@ -71,4 +78,39 @@ int _printf(const char *format, ...)
 	}
 	va_end(arg_parameters);
 	return (sum);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * _printf - varidic fucntion to print characters with different format
+ * @format: the first paramater
+ *
+ * Return: the length of the string to be displayed.
+ */
+
+int _printf(const char *format, ...)
+{
+	int count;
+	va_list args;
+
+	va_start(args, format);
+	/* call another fuction */
+	count = customPrint(format, args);
+
+	va_end(args);
+
+	return (count);
 }
