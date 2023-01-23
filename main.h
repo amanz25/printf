@@ -1,20 +1,24 @@
-#include<stdarg.h>
-
 #ifndef MAIN_H
 #define MAIN_H
-
-#define buffsize 1024
-
-/*  print character */
+#include <stdarg.h>
 int _putchar(char c);
-
-/*  print string based on args */
+int _puts(char *str, int ascii);
+int alpha_numeric_conversion(int number, int upp);
+char *base_conversion(unsigned long number, unsigned int base, int upp);
+char *pointer_conversion(unsigned long ptr);
+char _strcopy(char *str);
+int len_recursion(char *s);
+int string_reverse(va_list ap);
+char *new_string(char *str);
+int _char(va_list ap);
+int _string(va_list ap);
+int _percent(va_list args __attribute__((unused)));
+int (*char_type(const char c))(va_list);
 int _printf(const char *format, ...);
-void conditions(const char *format,va_list args);
-int customPrint(const char *format, va_list args);
 
-/* number display */
-void unsigned_number_to_string(int num, int base, char *buffer);
-void number_to_string(int num, int base, char *buffer);
-
+typedef struct _printf_flag
+{
+	char *c;
+	int (*f_p)(va_list);
+} myflag;
 #endif
