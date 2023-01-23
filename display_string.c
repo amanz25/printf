@@ -4,12 +4,10 @@
 
 /**
  * _putchar - writes the character c to stdout
- * @c: The character to print
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * @c: The character to print
+ * Return: On success 1 on error, -1 is returned
  */
-
 int _putchar(char c)
 {
 	return (write(1, &c, 1));
@@ -17,6 +15,7 @@ int _putchar(char c)
 
 /**
  * _puts - write all char from string to stdout
+ *
  * @str: string to print
  * @ascii: enable ascii restriction
  * Return: number of printed char
@@ -52,7 +51,6 @@ int _puts(char *str, int ascii)
  *           which contains a copy of the string given as a parameter.
  *
  * @str: char pointer to copy
- *
  * Return: a new char pointer
  */
 char *_strcopy(char *str)
