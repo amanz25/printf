@@ -9,17 +9,18 @@
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
+
 int _putchar(char c)
 {
 	return (write(1, &c, 1));
 }
+
 /**
  * _puts - write all char from string to stdout
  * @str: string to print
  * @ascii: enable ascii restriction
  * Return: number of printed char
  */
-
 int _puts(char *str, int ascii)
 {
 	char *s;
@@ -96,52 +97,4 @@ int len_recursion(char *s)
 	{
 		return (0);
 	}
-}
-
-/**
- * string_reverse - reverse a string
- *
- * @ap: arg list
- * Return: number printed char
- */
-int string_reverse(va_list ap)
-{
-	char *argument = va_arg(ap, char *), *str;
-	int size, left, limit, right, sum = 0;
-
-	if (!argument)
-	{
-		sum += _puts("%r", 0);
-		return (sum);
-	}
-
-	size = string_reverse(argument);
-	right = size - 1;
-	limit = (size % 2 == 0) ? (size + 1) / 2 : (size / 2);
-
-	str = malloc(sizeof(char) * size + 1);
-
-	if (str == NULL)
-	{
-		return (0);
-	}
-
-	if (size % 2 != 0)
-	{
-		str[limit] = argument[limit];
-	}
-
-	for (left = 0; left < limit; left++)
-	{
-		str[left] = argument[right];
-		str[right] = argument[left];
-		right--;
-	}
-
-	str[size] = '\0';
-
-	sum = _puts(str, 0);
-	free(str);
-
-	return (sum);
 }
