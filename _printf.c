@@ -1,4 +1,5 @@
-#include<stdarg.h>
+#include <stdarg.h>
+#include "main.h"
 
 /**
  * _printf - varidic fucntion to print characters with different format
