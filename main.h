@@ -1,6 +1,8 @@
 #ifndef MAIN_H
 #define MAIN_H
+
 #include <stdarg.h>
+
 int _putchar(char c);
 int _puts(char *str, int ascii);
 int alpha_numeric_conversion(int number, int upp);
@@ -16,9 +18,15 @@ int _percent(va_list args __attribute__((unused)));
 int (*char_type(const char c))(va_list);
 int _printf(const char *format, ...);
 
+/**
+ * struct _printf_flag - structure definition
+ * @c: format specifier character
+ * @f_p: function to print character
+ */
 typedef struct _printf_flag
 {
 	char *c;
 	int (*f_p)(va_list);
 } myflag;
+
 #endif
