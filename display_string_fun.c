@@ -38,7 +38,8 @@ return (i);
  * @args: char argumet list
  * Return: percent character
  */
-int _percent(va_list args __attribute__((unused)))
+int _percent(va_list args)
 {
+	(void)args;
 	return (_putchar('%'));
 }
