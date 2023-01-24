@@ -24,5 +24,6 @@ int _string(va_list ap);
 int _percent(va_list args);
 int _putchar(char c);
 int _put(char *s);
+int _int(va_list ap);
 
 #endif

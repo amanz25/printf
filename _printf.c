@@ -11,12 +11,14 @@ int (*get_checkSpecifier(char formatSpecifierLetter))(va_list)
 	specifierStruct functs[] = {
 		{'s', _string},
 		{'c', _char},
+		{'i', _int},
+		{'d', _int},
 		{'%', _percent}
 	};
 
 	int i;
 
-	for (i = 0; i < 3; i++)
+	for (i = 0; i < 5; i++)
 	{
 		if (functs[i].specifier == formatSpecifierLetter)
 			return (functs[i].print_function);
