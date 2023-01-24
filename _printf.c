@@ -60,13 +60,11 @@ int _printf(const char *format, ...)
 		}
 		if (format[i + 1] == '\0')
 			return (-1);
-		
 		formatSpecifier = checkSpecifiers(format[i + 1], arg);
 		if (formatSpecifier == -1 || formatSpecifier != 0)
 			i++;
 		if (formatSpecifier > 0)
 			count += formatSpecifier;
-		
 		if (formatSpecifier == 0)
 		{
 			_putchar('%');
