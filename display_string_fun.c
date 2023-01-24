@@ -1,7 +1,6 @@
-#include "main.h"
 #include <stdarg.h>
 #include <stdlib.h>
-#include <unistd.h>
+#include "main.h"
 
 /**
  * _char - a function to print character
@@ -11,12 +10,7 @@
  */
 int _char(va_list ap)
 {
-	char c = va_arg(ap, int);
-
-	if (c == '\0')
-		return (write(1, &c, 1));
-	_putchar(c);
-	return (1);
+	return (_putchar(va_arg(ap, int)));
 }
 
 /**
@@ -27,15 +21,18 @@ int _char(va_list ap)
  */
 int _string(va_list ap)
 {
-	char *argument = va_arg(ap, char *);
-	int sum = 0;
+int i;
+char *str = va_arg(ap, char*);
 
-	if (!argument)
-	{
-		sum += _puts("(null)", 0);
-		return (sum);
-	}
-	return (_puts(argument, 0));
+if (str == NULL)
+	str = "(null)";
+else if (*str == '\0')
+	return (-1);
+
+for (i = 0; str[i]; i++)
+	_putchar(str[i]);
+
+return (i);
 }
 /**
  * _percent -  to print percent character

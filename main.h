@@ -3,7 +3,13 @@
 
 #include <stdarg.h>
 
+int _printf(const char *format, ...);
+int checkSpecifiers(char formatSpecifierLetter, va_list arg);
+int _char(va_list ap);
+int _string(va_list ap);
+int _percent(va_list args __attribute__((unused)));
 int _putchar(char c);
+
 int _puts(char *str, int ascii);
 int alpha_numeric_conversion(int number, int upp);
 char *base_conversion(unsigned long number, unsigned int base, int upp);
@@ -12,21 +18,16 @@ char *_strcopy(char *str);
 int len_recursion(char *s);
 int string_reverse(va_list ap);
 char *new_string(char *str);
-int _char(va_list ap);
-int _string(va_list ap);
-int _percent(va_list args __attribute__((unused)));
-int (*char_type(const char c))(va_list);
-int _printf(const char *format, ...);
 
 /**
- * struct _printf_flag - structure definition
- * @c: format specifier character
- * @f_p: function to print character
+ * specifierStruct - structure definition
+ * @specifier: format specifier character
+ * @print_func: function to print character
  */
-typedef struct _printf_flag
+typedef struct specifierStruct
 {
-	char *c;
-	int (*f_p)(va_list);
-} myflag;
+	char *specifier;
+	int (*print_func)(va_list);
+} specifierStruct;
 
 #endif

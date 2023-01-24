@@ -1,31 +1,29 @@
 #include <stdarg.h>
-#include <stddef.h>
 #include "main.h"
 
 /**
- * char_type - to selct a function to translat character
+ * checkSpecifiers - print char based on the specifier
+ * @formatSpecifierLetter: format specifier character
+ * @arg: current traversed argument.
  *
- * @c: to checke the character
- * Return: pointer
+ * Return: 1 if it gets the correct specifier else 0.
  */
-int (*char_type(const char c))(va_list)
+int checkSpecifiers(char formatSpecifierLetter, va_list arg)
 {
-	int i = 0;
+	int i;
 
-	myflag flagpointer[] = {
-		{"c", _char},
-		{"s", _string},
-		{"%", _percent}
-	};
-	while (i < 14)
+	specifierStruct functs[] = {
+			{"c", _char},
+			{"s", _string},
+			{NULL, NULL}
+			};
+
+	for (i = 0; functs[i].specifier != NULL; i++)
 	{
-		if (c == flagpointer[i].c[0])
-		{
-			return (flagpointer[i].f_p);
-		}
-		i++;
+	if (functs[i].specifier[0] == formatSpecifierLetter)
+		return (functs[i].print_func(arg));
 	}
-	return (NULL);
+	return (0);
 }
 
 /**
@@ -36,40 +34,43 @@ int (*char_type(const char c))(va_list)
  */
 int _printf(const char *format, ...)
 {
-	va_list arg_parameters;
-	int sum = 0, i = 0;
-	int (*func)();
+	unsigned int i;
+	int formatSpecifier = 0, count = 0;
+	va_list arg;
+
 
 	if (!format || (format[0] == '%' && format[1] == '\0'))
-		return (-1);
-	va_start(arg_parameters, format);
+	return (-1);
 
-	while (format[i])
+	va_start(arg, format);
+	for (i = 0; format[i] != '\0'; i++)
 	{
-		if (format[i] == '%')
+		if (format[i] != '%')
 		{
-			if (format[i + 1] != '\0')
-				func = char_type(format[i + 1]);
-			if (func == NULL)
-			{
-				_putchar(format[i]);
-				sum++;
-				i++;
-			}
-			else
-			{
-				sum += func(arg_parameters);
-				i += 2;
-				continue;
-			}
-		}
-		else
-		{
-			_putchar(format[i]);
-			sum++;
-			i++;
-		}
+		_putchar(format[i]);
+		count++;
+		continue;
 	}
-	va_end(arg_parameters);
-	return (sum);
+	if (format[i + 1] == '%')
+	{
+		_putchar('%');
+		count++;
+		i++;
+		continue;
+	}
+	if (format[i + 1] == '\0')
+		return (-1);
+	formatSpecifier = checkSpecifiers(format[i + 1], arg);
+	if (formatSpecifier == -1 || formatSpecifier != 0)
+		i++;
+	if (formatSpecifier > 0)
+		count += formatSpecifier;
+	if (formatSpecifier == 0)
+	{
+		_putchar('%');
+		count++;
+	}
+	}
+	va_end(arg);
+	return (count);
 }
