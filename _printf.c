@@ -15,6 +15,8 @@ int checkSpecifiers(char formatSpecifierLetter, va_list arg)
 	specifierStruct specifiers[] = {
 			{"c", _char},
 			{"s", _string},
+			{"d", _int},
+			{"i", _int},
 			{NULL, NULL}
 			};
 

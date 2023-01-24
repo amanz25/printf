@@ -21,5 +21,6 @@ int _char(va_list ap);
 int _string(va_list ap);
 int _percent(va_list args __attribute__((unused)));
 int _putchar(char c);
+int _int(va_list ap);
 
 #endif
