@@ -1,3 +1,5 @@
+#include "main.h"
+
 /**
  * _int - prints digit/integer.
  * @ap: argument track list
