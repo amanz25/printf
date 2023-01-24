@@ -9,20 +9,22 @@
  */
 int (*get_checkSpecifier(char formatSpecifierLetter))(va_list)
 {
-specifierStruct functs[] = {
-{'s', _string},
-{'c', _char},
-{'d', _int},
-{'i', _int},
-{'%', _percent}
-};
+	specifierStruct functs[] = {
+		{'s', _string},
+		{'c', _char},
+		{'d', _int},
+		{'i', _int},
+		{'%', _percent}
+	};
 
-int i;
+	int i;
 
-for (i = 0; i < 5; i++)
-if (functs[i].specifier == formatSpecifierLetter)
-return (functs[i].print_function);
-return (NULL);
+	for (i = 0; i < 5; i++)
+	{
+		if (functs[i].specifier == formatSpecifierLetter)
+			return (functs[i].print_function);
+	}
+	return (NULL);
 }
 
 /**
