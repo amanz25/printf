@@ -1,4 +1,3 @@
-#include <stdarg.h>
 #include <stdlib.h>
 #include "main.h"
 
@@ -13,16 +12,16 @@ int checkSpecifiers(char formatSpecifierLetter, va_list arg)
 {
 	int i;
 
-	specifierStruct functs[] = {
+	specifierStruct specifiers[] = {
 			{"c", _char},
 			{"s", _string},
 			{NULL, NULL}
 			};
 
-	for (i = 0; functs[i].specifier != NULL; i++)
+	for (i = 0; specifiers[i].specifier != NULL; i++)
 	{
-	if (functs[i].specifier[0] == formatSpecifierLetter)
-		return (functs[i].print_func(arg));
+		if (specifiers[i].specifier[0] == formatSpecifierLetter)
+			return (specifiers[i].print_func(arg));
 	}
 	return (0);
 }
@@ -40,37 +39,39 @@ int _printf(const char *format, ...)
 	va_list arg;
 
 
-	if (!format || (format[0] == '%' && format[1] == '\0'))
-	return (-1);
+	if (format == NULL)
+		return (-1);
 
 	va_start(arg, format);
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
 		{
-		_putchar(format[i]);
-		count++;
-		continue;
-	}
-	if (format[i + 1] == '%')
-	{
-		_putchar('%');
-		count++;
-		i++;
-		continue;
-	}
-	if (format[i + 1] == '\0')
-		return (-1);
-	formatSpecifier = checkSpecifiers(format[i + 1], arg);
-	if (formatSpecifier == -1 || formatSpecifier != 0)
-		i++;
-	if (formatSpecifier > 0)
-		count += formatSpecifier;
-	if (formatSpecifier == 0)
-	{
-		_putchar('%');
-		count++;
-	}
+			_putchar(format[i]);
+			count++;
+			continue;
+		}
+		if (format[i + 1] == '%')
+		{
+			_putchar('%');
+			count++;
+			i++;
+			continue;
+		}
+		if (format[i + 1] == '\0')
+			return (-1);
+		
+		formatSpecifier = checkSpecifiers(format[i + 1], arg);
+		if (formatSpecifier == -1 || formatSpecifier != 0)
+			i++;
+		if (formatSpecifier > 0)
+			count += formatSpecifier;
+		
+		if (formatSpecifier == 0)
+		{
+			_putchar('%');
+			count++;
+		}
 	}
 	va_end(arg);
 	return (count);
