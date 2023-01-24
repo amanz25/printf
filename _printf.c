@@ -2,7 +2,7 @@
 #include "main.h"
 
 /**
- * checkSpecifiers - print char based on the specifier
+ * get_checkSpecifier - print char based on the specifier
  * @formatSpecifierLetter: format specifier characte.
  *
  * Return: 1 if it gets the correct specifier else 0.
@@ -33,37 +33,38 @@ return (NULL);
  */
 int _printf(const char *format, ...)
 {
-int (*display_func)(va_list);
-const char *p;
-va_list arguments;
+	int (*display_func)(va_list);
+	const char *p;
+	va_list arguments;
 
-register int count = 0;
+	int count = 0;
 
-va_start(arguments, format);
-if (!format || (format[0] == '%' && !format[1]))
-return (-1);
-if (format[0] == '%' && format[1] == ' ' && !format[2])
-return (-1);
-for (p = format; *p; p++)
-{
-if (*p == '%')
-{
-p++;
-if (*p == '%')
-{
-count += _putchar('%');
-continue;
-}
+	va_start(arguments, format);
+	if (!format || (format[0] == '%' && !format[1]))
+		return (-1);
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
+	for (p = format; *p; p++)
+	{
+		if (*p == '%')
+		{
+			p++;
+			if (*p == '%')
+			{
+				count += _putchar('%');
+				continue;
+			}
 
-display_func = get_checkSpecifier(*p);
-if (display_func)
-count += display_func(arguments);
-else
-count += _printf("%%%c", *p);
-} else
-count += _putchar(*p);
-}
-_putchar(-1);
-va_end(arguments);
-return (count);
+			display_func = get_checkSpecifier(*p);
+			if (display_func)
+				count += display_func(arguments);
+			else
+				count += _printf("%%%c", *p);
+		}
+		else
+			count += _putchar(*p);
+	}
+	_putchar(-1);
+	va_end(arguments);
+	return (count);
 }

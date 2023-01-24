@@ -6,8 +6,8 @@
 
 /**
  * struct specifierStruct - structure definition
- * @print_function: format specifier character
- * @checkSpecifiers: function to print character
+ * @specifier: format specifier character
+ * @print_function: function to print character
  */
 typedef struct specifierStruct
 {
