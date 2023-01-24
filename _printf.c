@@ -34,13 +34,13 @@ int (*get_checkSpecifier(char formatSpecifierLetter))(va_list)
  */
 int _printf(const char *format, ...)
 {
-	int (*display_func)(va_list);
+	int (*pfunc)(va_list);
 	const char *p;
-	va_list arguments;
+	va_list args;
 
 	int count = 0;
 
-	va_start(arguments, format);
+	va_start(args, format);
 	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
 	if (format[0] == '%' && format[1] == ' ' && !format[2])
@@ -56,16 +56,13 @@ int _printf(const char *format, ...)
 				continue;
 			}
 
-			display_func = get_checkSpecifier(*p);
-			if (display_func)
-				count += display_func(arguments);
-			else
-				count += _printf("%%%c", *p);
+			pfunc = get_checkSpecifier(*p);
+			count += (pfunc) ? pfunc(args) : _printf("%%%c", *p);
 		}
 		else
 			count += _putchar(*p);
 	}
 	_putchar(-1);
-	va_end(arguments);
+	va_end(args);
 	return (count);
 }
