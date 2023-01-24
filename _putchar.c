@@ -24,3 +24,17 @@ int _putchar(char c)
 	}
 	return (1);
 }
+
+/**
+ * _put - prints a string to stdout
+ * @s: pointer to the string to print
+ * Return: number of chars written
+ */
+int _put(char *s)
+{
+	int i;
+
+	for (i = 0; s[i] != '\0'; i++)
+		_putchar(s[i]);
+	return (i);
+}

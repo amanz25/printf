@@ -19,18 +19,12 @@ int _char(va_list ap)
  */
 int _string(va_list ap)
 {
-int i;
 char *str = va_arg(ap, char*);
 
-if (str == NULL)
+if (!str)
 	str = "(null)";
-else if (*str == '\0')
-	return (-1);
 
-for (i = 0; str[i]; i++)
-	_putchar(str[i]);
-
-return (i);
+return (_put(str));
 }
 /**
  * _percent -  to print percent character
