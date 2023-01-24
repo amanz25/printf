@@ -6,17 +6,17 @@
 
 /**
  * struct specifierStruct - structure definition
- * @specifier: format specifier character
- * @print_func: function to print character
+ * @print_function: format specifier character
+ * @checkSpecifiers: function to print character
  */
 typedef struct specifierStruct
 {
-	char *specifier;
-	int (*print_func)(va_list);
+	char specifier;
+	int (*print_function)(va_list);
 } specifierStruct;
 
 int _printf(const char *format, ...);
-int checkSpecifiers(char formatSpecifierLetter, va_list arg);
+int (*get_checkSpecifier(char formatSpecifierLetter))(va_list);
 int _char(va_list ap);
 int _string(va_list ap);
 int _percent(va_list args __attribute__((unused)));
