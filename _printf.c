@@ -13,12 +13,13 @@ int (*get_checkSpecifier(char formatSpecifierLetter))(va_list)
 		{'c', _char},
 		{'i', _int},
 		{'d', _int},
+		{'b', _binary},
 		{'%', _percent}
 	};
 
 	int i;
 
-	for (i = 0; i < 5; i++)
+	for (i = 0; i < 6; i++)
 	{
 		if (functs[i].specifier == formatSpecifierLetter)
 			return (functs[i].print_function);

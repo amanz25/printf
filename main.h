@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
+#define BUFF_SIZE 1024
 
 /**
  * struct specifierStruct - structure definition
@@ -25,5 +26,8 @@ int _percent(va_list args);
 int _putchar(char c);
 int _put(char *s);
 int _int(va_list ap);
+
+char *change_base(unsigned int number, int base, int ishexalower);
+int _binary(va_list arg);
 
 #endif
