@@ -9,22 +9,19 @@
 
 int _int(va_list ap, T_flag *t)
 {
+	int num = va_arg(ap, int);
+	int count = digit_len(num);
 
-int count = 0;
-int num = va_arg(ap, int);
+	if (t->spaceSign == 1 && t->plusSign == 0 && num >= 0)
+		count += _putchar(' ');
+	if (t->plusSign == 1 && num >= 0)
+		count += _putchar('+');
 
-count = digit_len(num);
+	if (num <= 0)
+		count++;
 
-if (t->spaceSign == 1 && t->plusSign == 0 && num >= 0)
-	count += _putchar(' ');
-if (t->plusSign == 1 && num >= 0)
-	count += _putchar('+');
-
-if (num <= 0)
-	count++;
-
-display_num_recur(num);
-return (count);
+	display_num_recur(num);
+	return (count);
 }
 
 /**
@@ -73,7 +70,10 @@ int digit_len(int num)
 void display_num_recur(int n)
 {
 	if (n < 0)
+	{
+		_putchar('-');
 		n = -1 * n;
+	}
 
 	if(n / 10)
 		display_num_recur(n / 10);
