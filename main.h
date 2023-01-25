@@ -35,4 +35,6 @@ int _hexadecimal(va_list arg);
 int _hexadecimal_UPP(va_list arg);
 int _octal(va_list arg);
 
+int _customstring(va_list args);
+
 #endif

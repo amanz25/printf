@@ -20,7 +20,7 @@ char *change_base(unsigned long int number, int base, int ishexalower)
 
 	ptr = &buffer[BUFF_SIZE - 1];
 	*ptr = '\0';
-	
+
 	/* for 0 */
 	*--ptr = poss[number % base];
 	number = number / base;
@@ -30,7 +30,7 @@ char *change_base(unsigned long int number, int base, int ishexalower)
 		*--ptr = poss[number % base];
 		number = number / base;
 	}
-	
+
 	return (ptr);
 }
 

@@ -18,12 +18,13 @@ int (*get_checkSpecifier(char formatSpecifierLetter))(va_list)
 		{'o', _octal},
 		{'x', _hexadecimal},
 		{'X', _hexadecimal_UPP},
+		{'S', _customstring},
 		{'%', _percent}
 	};
 
 	int i;
 
-	for (i = 0; i < 10; i++)
+	for (i = 0; i < 11; i++)
 	{
 		if (functs[i].specifier == formatSpecifierLetter)
 			return (functs[i].print_function);
