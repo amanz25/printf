@@ -10,7 +10,7 @@
 int _int(va_list ap, T_flag *t)
 {
 
-unsigned int consequent = 1, i, quotient, count = 0;
+int count = 0;
 int num = va_arg(ap, int);
 
 count = digit_len(num);
@@ -20,31 +20,10 @@ if (t->spaceSign == 1 && t->plusSign == 0 && num >= 0)
 if (t->plusSign == 1 && num >= 0)
 	count += _putchar('+');
 
-if (num < 0)
-{
-_putchar('-');
-count++;
-/* change to positive */
-num = num * -1;
-}
+if (num <= 0)
+	count++;
 
-i = 0;
-while ((num / consequent) > 9)
-{
-i++;
-consequent = consequent * 10;
-}
-
-while (consequent >= 1)
-{
-quotient = num / consequent;
-_putchar('0' + quotient);
-
-num = num % consequent;
-consequent = consequent / 10;
-count++;
-}
-
+display_num_recur(num);
 return (count);
 }
 
@@ -83,4 +62,21 @@ int digit_len(int num)
 		num = num / 10;
 
 	return (count);
+}
+
+/**
+ * display_num_recur - print numbers
+ * @num: the number to be printed
+ *
+ * Return: void
+ */
+void display_num_recur(int n)
+{
+	if (n < 0)
+		n = -1 * n;
+
+	if(n / 10)
+		display_num_recur(n / 10);
+
+	_putchar('0' + (n % 10));
 }

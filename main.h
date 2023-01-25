@@ -42,6 +42,7 @@ int _putchar(char c);
 int _put(char *s);
 int _int(va_list ap, T_flag *);
 int digit_len(int num);
+void display_num_recur(int n);
 
 char *change_base(unsigned long int number, int base, int ishexalower);
 int _binary(va_list arg, T_flag *);
