@@ -56,9 +56,9 @@ int _customstring(va_list args)
 	{
 		if (str[index] > 0 && (str[index] < 32 || str[index] >= 127))
 		{
-			_puts("\\x");
+			_put("\\x");
 			strlen = strlen + 2;
-			convert = change_base(str[i], 16, 0);
+			convert = change_base(str[index], 16, 0);
 			if (!convert[1])
 				strlen += _putchar('0');
 
