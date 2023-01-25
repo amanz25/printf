@@ -1,12 +1,42 @@
 #include "main.h"
 
 /**
+ * get_special_specifiers - change value of flag struc if special char found
+ * @c: special format specifier + # or space  
+ * @t: pointer to struct
+ *
+ * Return: 1 if it is special specifer(+,# or space) else 0.
+ */
+int get_special_specifiers(char c, T_flag *t)
+{
+	int res = 0;
+	
+	if (c == '+')
+	{
+		t->plusSign = 1;
+		res = 1;
+	}
+	else if (c == '#')
+	{	
+		t->hashSign = 1;
+		res = 1;
+	}
+	else if (c == ' ')
+	{
+		t->spaceSign = 1;
+		res = 1;
+	}
+
+	return (res);
+}
+
+/**
  * get_checkSpecifier - print char based on the specifier
  * @formatSpecifierLetter: format specifier characte.
  *
  * Return: 1 if it gets the correct specifier else 0.
  */
-int (*get_checkSpecifier(char formatSpecifierLetter))(va_list)
+int (*get_checkSpecifier(char formatSpecifierLetter))(va_list, T_flag *)
 {
 	specifierStruct functs[] = {
 		{'s', _string},
@@ -41,9 +71,11 @@ int (*get_checkSpecifier(char formatSpecifierLetter))(va_list)
  */
 int _printf(const char *format, ...)
 {
-	int (*pfunc)(va_list);
-	const char *p;
+	int (*func)(va_list, T_flag *);
+	const char *curr;
 	va_list args;
+	/* initalize special flag with 0 */
+	T_flag t = {0, 0, 0};
 
 	int count = 0;
 
@@ -55,22 +87,27 @@ int _printf(const char *format, ...)
 		return (-1);
 	if (format[0] == '%' && format[1] == ' ' && !format[2])
 		return (-1);
-	for (p = format; *p; p++)
+	for (curr = format; *curr; curr++)
 	{
-		if (*p == '%')
+		if (*curr == '%')
 		{
-			p++;
-			if (*p == '%')
+			curr++;
+			if (*curr == '%')
 			{
 				count += _putchar('%');
 				continue;
 			}
+			while(get_special_specifiers(*curr, &t))
+				curr++;
 
-			pfunc = get_checkSpecifier(*p);
-			count += (pfunc) ? pfunc(args) : _printf("%%%c", *p);
+			func = get_checkSpecifier(*curr);
+			if (func)
+				count += func(args, &t);
+			else
+				count += _printf("%%%c", *curr);
 		}
 		else
-			count += _putchar(*p);
+			count += _putchar(*curr);
 	}
 	_putchar(-1);
 	va_end(args);

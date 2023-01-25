@@ -3,14 +3,17 @@
 /**
  * _pointer_address - display address
  * @args: arguments
+ * @t: pointer to track + # and space
+ *
  * Return: count of characters to be displayed
  */
-int _pointer_address(va_list args)
+int _pointer_address(va_list args, T_flag *t)
 {
 	char *s;
 	int strlen = 0;
 	unsigned long int arg = va_arg(args, unsigned long int);
 
+	(void)t;
 	if (!arg)
 		return (_put("(nil)"));
 
