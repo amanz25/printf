@@ -37,4 +37,6 @@ int _octal(va_list arg);
 
 int _customstring(va_list args);
 
+int _pointer_address(va_list args);
+
 #endif
