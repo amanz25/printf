@@ -14,12 +14,16 @@ int (*get_checkSpecifier(char formatSpecifierLetter))(va_list)
 		{'i', _int},
 		{'d', _int},
 		{'b', _binary},
+		{'u', _unsigned},
+		{'o', _octal},
+		{'x', _hexadecimal},
+		{'X', _hexadecimal_UPP},
 		{'%', _percent}
 	};
 
 	int i;
 
-	for (i = 0; i < 6; i++)
+	for (i = 0; i < 10; i++)
 	{
 		if (functs[i].specifier == formatSpecifierLetter)
 			return (functs[i].print_function);

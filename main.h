@@ -27,7 +27,12 @@ int _putchar(char c);
 int _put(char *s);
 int _int(va_list ap);
 
-char *change_base(unsigned int number, int base, int ishexalower);
+char *change_base(unsigned long int number, int base, int ishexalower);
 int _binary(va_list arg);
+
+int _unsigned(va_list arg);
+int _hexadecimal(va_list arg);
+int _hexadecimal_UPP(va_list arg);
+int _octal(va_list arg);
 
 #endif

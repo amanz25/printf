@@ -39,3 +39,19 @@ count++;
 
 return (count);
 }
+
+/**
+ * _unsigned - print unsigned or +ve num in base 10
+ * @arg: current traversed argument.
+ *
+ * Return: number in hexadecimal form.
+ */
+int _unsigned(va_list arg)
+{
+	unsigned int num = va_arg(arg, unsigned int);
+	char *s = change_base(num, 10, 0);
+	int count = 0;
+
+	count += _put(s);
+	return (count);
+}
