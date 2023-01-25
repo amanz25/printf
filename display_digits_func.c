@@ -13,6 +13,8 @@ int _int(va_list ap, T_flag *t)
 unsigned int consequent = 1, i, quotient, count = 0;
 int num = va_arg(ap, int);
 
+count = digit_len(num);
+
 if (t->spaceSign == 1 && t->plusSign == 0 && num >= 0)
 	count += _putchar(' ');
 if (t->plusSign == 1 && num >= 0)
@@ -61,5 +63,24 @@ int _unsigned(va_list arg, T_flag *t)
 
 	(void)t;
 	count += _put(s);
+	return (count);
+}
+
+/**
+ * digit_len - get the length of digit
+ * @num: number to be checked
+ *
+ * Return: count of digit
+ */
+int digit_len(int num)
+{
+	int count;
+
+	if (num < 0)
+		num = -num;
+
+	for (count = 0; num != 0; count++)
+		num = num / 10;
+
 	return (count);
 }

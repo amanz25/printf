@@ -75,7 +75,7 @@ int _printf(const char *format, ...)
 	const char *curr;
 	va_list args;
 	T_flag t = {0, 0, 0};
-	int count = 0;
+	int strlen = 0;
 
 	if (format == NULL)
 		return (-1);
@@ -92,7 +92,7 @@ int _printf(const char *format, ...)
 			curr++;
 			if (*curr == '%')
 			{
-				count += _putchar('%');
+				strlen += _putchar('%');
 				continue;
 			}
 			while (get_special_specifiers(*curr, &t))
@@ -100,14 +100,14 @@ int _printf(const char *format, ...)
 
 			func = get_checkSpecifier(*curr);
 			if (func)
-				count += func(args, &t);
+				strlen += func(args, &t);
 			else
-				count += _printf("%%%c", *curr);
+				strlen += _printf("%%%c", *curr);
 		}
 		else
-			count += _putchar(*curr);
+			strlen += _putchar(*curr);
 	}
 	_putchar(-1);
 	va_end(args);
-	return (count);
+	return (strlen);
 }
