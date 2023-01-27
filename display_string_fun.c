@@ -99,16 +99,16 @@ int _reverse(va_list args, T_flag *t)
 	if (str == NULL)
 		s = "(null)";
 
-	for (strlen = 0; str[strlen] != '\0'; strlen++)
+	for (strlen = 0; str[strlen]; strlen++)
 		;
 
-	count = strlen;
+	count = strlen - 1;
 
-	while (strlen >= 0)
+	while (count >= 0)
 	{
-		_putchar(str[strlen]);
-		strlen--;
+		_putchar(str[count]);
+		count--;
 	}
 
-	return (count);
+	return (strlen);
 }
