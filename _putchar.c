@@ -9,10 +9,10 @@
  */
 int _putchar(char c)
 {
-	static char buf[1024];
+	static char buf[BUFF_SIZE];
 	static int i;
 
-	if (c == -1 || i >= 1024)
+	if (c == -1 || i >= BUFF_SIZE)
 	{
 		write(1, &buf, i);
 		i = 0;

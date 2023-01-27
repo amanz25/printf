@@ -35,11 +35,9 @@ int _unsigned(va_list arg, T_flag *t)
 {
 	unsigned int num = va_arg(arg, unsigned int);
 	char *s = change_base(num, 10, 0);
-	int count = 0;
 
 	(void)t;
-	count += _put(s);
-	return (count);
+	return (_put(s));
 }
 
 /**
@@ -78,5 +76,5 @@ void display_num_recur(int n)
 	if(n / 10)
 		display_num_recur(n / 10);
 
-	_putchar('0' + (n % 10));
+	_putchar((n % 10) + '0');
 }

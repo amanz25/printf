@@ -22,7 +22,7 @@ int _char(va_list ap, T_flag *t)
  */
 int _string(va_list ap, T_flag *t)
 {
-char *str = va_arg(ap, char*);
+char *str = va_arg(ap, char *);
 
 (void)t;
 if (!str)
