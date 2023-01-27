@@ -29,6 +29,8 @@ int _rot13(va_list args, T_flag *t)
 			{
 				if (str[i] == first[k])
 					_putchar(second[k]);
+
+				k++;
 			}
 		}
 		i++;
