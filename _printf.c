@@ -50,12 +50,13 @@ int (*get_checkSpecifier(char formatSpecifierLetter))(va_list, T_flag *)
 		{'X', _hexadecimal_UPP},
 		{'S', _customstring},
 		{'p', _pointer_address},
+		{'r', _reverse},
 		{'%', _percent}
 	};
 
 	int i;
 
-	for (i = 0; i < 12; i++)
+	for (i = 0; i < 13; i++)
 	{
 		if (functs[i].specifier == formatSpecifierLetter)
 			return (functs[i].print_function);

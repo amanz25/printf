@@ -56,4 +56,6 @@ int _customstring(va_list args, T_flag *);
 
 int _pointer_address(va_list args, T_flag *);
 
+int _reverse(va_list args, T_flag *t);
+
 #endif

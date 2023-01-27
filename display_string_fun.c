@@ -82,3 +82,33 @@ int _customstring(va_list args, T_flag *t)
 
 	return (strlen);
 }
+
+/**
+ * _reverse - reverse the string
+ * @args: argumet list
+ * @t: pointer to track + # and space
+ *
+ * Return: count of string
+ */
+int _reverse(va_list args, T_flag *t)
+{
+	int strlen, count;
+	char *str = va_arg(args, char *);
+
+	(void)t;
+	if (str == NULL)
+		s = "(null)";
+
+	for (strlen = 0; str[strlen] != '\0'; strlen++)
+		;
+
+	count = strlen;
+
+	while (strlen >= 0)
+	{
+		_putchar(str[strlen]);
+		strlen--;
+	}
+
+	return (count);
+}
