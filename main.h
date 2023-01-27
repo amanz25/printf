@@ -58,4 +58,6 @@ int _pointer_address(va_list args, T_flag *);
 
 int _reverse(va_list args, T_flag *t);
 
+int _rot13(va_list args, T_flag *t);
+
 #endif
