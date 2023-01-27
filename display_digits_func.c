@@ -49,12 +49,15 @@ int _unsigned(va_list arg, T_flag *t)
 int digit_len(int num)
 {
 	int count;
+	unsigned int posNum;
 
 	if (num < 0)
-		num = -num;
+		posNum = -num;
+	else
+		posNum = num;
 
-	for (count = 0; num != 0; count++)
-		num = num / 10;
+	for (count = 0; posNum != 0; count++)
+		posNum = posNum / 10;
 
 	return (count);
 }
@@ -67,14 +70,18 @@ int digit_len(int num)
  */
 void display_num_recur(int n)
 {
+	unsigned int posNum;
+
 	if (n < 0)
 	{
 		_putchar('-');
-		n = -1 * n;
+		posNum = -1 * n;
 	}
+	else
+		posNum = n;
 
-	if (n / 10)
-		display_num_recur(n / 10);
+	if (posNum / 10)
+		display_num_recur(posNum / 10);
 
-	_putchar((n % 10) + '0');
+	_putchar('0' + (posNum % 10));
 }
