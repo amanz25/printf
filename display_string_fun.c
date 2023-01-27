@@ -97,7 +97,7 @@ int _reverse(va_list args, T_flag *t)
 
 	(void)t;
 	if (str == NULL)
-		s = "(null)";
+		str = "(null)";
 
 	for (strlen = 0; str[strlen]; strlen++)
 		;
