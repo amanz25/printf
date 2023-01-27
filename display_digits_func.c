@@ -61,7 +61,7 @@ int digit_len(int num)
 
 /**
  * display_num_recur - print numbers
- * @num: the number to be printed
+ * @n: the number to be printed
  *
  * Return: void
  */
@@ -73,7 +73,7 @@ void display_num_recur(int n)
 		n = -1 * n;
 	}
 
-	if(n / 10)
+	if (n / 10)
 		display_num_recur(n / 10);
 
 	_putchar((n % 10) + '0');

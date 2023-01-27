@@ -10,7 +10,8 @@
 int _char(va_list ap, T_flag *t)
 {
 	(void)t;
-	return (_putchar(va_arg(ap, int)));
+	_putchar(va_arg(ap, int));
+	return (1);
 }
 
 /**
@@ -22,13 +23,13 @@ int _char(va_list ap, T_flag *t)
  */
 int _string(va_list ap, T_flag *t)
 {
-char *str = va_arg(ap, char *);
+	char *str = va_arg(ap, char *);
 
-(void)t;
-if (!str)
-	str = "(null)";
+	(void)t;
+	if (!str)
+		str = "(null)";
 
-return (_put(str));
+	return (_put(str));
 }
 /**
  * _percent -  to print percent character
