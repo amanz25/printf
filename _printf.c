@@ -77,9 +77,6 @@ int _printf(const char *format, ...)
 	T_flag t = {0, 0, 0};
 	int strlen = 0;
 
-	if (format == NULL)
-		return (-1);
-
 	va_start(args, format);
 	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
